@@ -85,9 +85,40 @@ const mainMenu = async () => {
       console.log('Role added successfully!');
       break;
 
-    case 'Add Employee':
-      // Similar logic for adding an employee
-      break;
+      case 'Add Employee':
+        const rolesForEmployees = await getAllRoles();
+        const roleChoicesForEmployees = rolesForEmployees.map(role => ({
+          name: role.title,
+          value: role.id
+        }));
+      
+        const { firstName, lastName, roleId, managerId } = await inquirer.prompt([
+          {
+            name: 'firstName',
+            type: 'input',
+            message: 'Enter the first name of the new employee:'
+          },
+          {
+            name: 'lastName',
+            type: 'input',
+            message: 'Enter the last name of the new employee:'
+          },
+          {
+            name: 'roleId',
+            type: 'list',
+            message: 'Select the role for the new employee:',
+            choices: roleChoicesForEmployees
+          },
+          {
+            name: 'managerId',
+            type: 'input',
+            message: 'Enter the manager ID for the new employee (if applicable):'
+          }
+        ]);
+      
+        await addEmployee(firstName, lastName, roleId, managerId);
+        console.log('Employee added successfully!');
+        break;
 
     case 'Update Employee Role':
       const employeesToUpdate = await getAllEmployees();

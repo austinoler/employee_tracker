@@ -1,17 +1,19 @@
 -- Create department table
 CREATE TABLE department (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30)
 );
 
+
 -- Create role table
 CREATE TABLE role (
-  id INT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30),
-  salary DECIMAL,
+  salary DECIMAL(10, 2), -- Adjust the precision and scale according to your needs
   department_id INT,
   FOREIGN KEY (department_id) REFERENCES department(id)
 );
+
 
 -- Create employee table
 CREATE TABLE employee (
