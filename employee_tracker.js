@@ -109,11 +109,6 @@ const mainMenu = async () => {
             message: 'Select the role for the new employee:',
             choices: roleChoicesForEmployees
           },
-          {
-            name: 'managerId',
-            type: 'input',
-            message: 'Enter the manager ID for the new employee (if applicable):'
-          }
         ]);
       
         await addEmployee(firstName, lastName, roleId, managerId);
